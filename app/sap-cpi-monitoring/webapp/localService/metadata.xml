@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="QueueService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Queue" EntityType="QueueService.Queue">
+                    <NavigationPropertyBinding Path="messages" Target="Message"/>
+                </EntitySet>
+                <EntitySet Name="Message" EntityType="QueueService.Message">
+                    <NavigationPropertyBinding Path="queues" Target="Queue"/>
+                </EntitySet>
+            </EntityContainer>
+            <EntityType Name="Queue">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="id" Type="Edm.String" Nullable="false"/>
+                <Property Name="project" Type="Edm.String"/>
+                <Property Name="queueName" Type="Edm.String"/>
+                <Property Name="tenant" Type="Edm.String"/>
+                <NavigationProperty Name="messages" Type="Collection(QueueService.Message)"/>
+            </EntityType>
+            <EntityType Name="Message">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="id" Type="Edm.String" Nullable="false"/>
+                <Property Name="queueID" Type="Edm.String"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset"/>
+                <Property Name="interface" Type="Edm.String"/>
+                <Property Name="applicationId" Type="Edm.String"/>
+                <Property Name="messageId" Type="Edm.String"/>
+                <Property Name="correlationId" Type="Edm.String"/>
+                <Property Name="errorMsg" Type="Edm.String"/>
+                <NavigationProperty Name="queues" Type="QueueService.Queue">
+                    <ReferentialConstraint Property="queueID" ReferencedProperty="id"/>
+                </NavigationProperty>
+            </EntityType>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

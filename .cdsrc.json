@@ -1,0 +1,28 @@
+
+{
+    "[development]": {
+      "auth": {
+       "passport": {
+        "strategy": "mock",
+        "users": {
+          "cpi.moni.mem1@tester.sap.com": {
+           "password": "initial",
+           "ID": "cpimoni1",
+           "userAttributes": {
+             "email": "cpi.moni.mem1@tester.sap.com"
+           },
+           "roles": ["CPIMonitoringMember"]
+         },
+          "cpi.moni.admin1@tester.sap.com": {
+           "password": "initial",
+           "ID": "cpimoni0",
+           "userAttributes": {
+             "email": "cpi.moni.admin1@tester.sap.com"
+           },
+           "roles": ["CPIMonitoringAdministractor"]
+         }
+        }
+       }
+      }
+     }
+    }

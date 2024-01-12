@@ -1,0 +1,5 @@
+id,project,queueName,tenant
+stc__TEST_Q1__dev,stc,TEST_Q1,dev
+p01__queue01__prd,p01,queue01,prd
+p02__queue01__prd,p02,queue01,prd
+p02__queue01__dev,p02,queue01,dev
